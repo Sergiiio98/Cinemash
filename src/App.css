@@ -1,38 +1,49 @@
-.App {
-  text-align: center;
+/* html {
+  background-color: #1C1C1C;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.CineHome{
+  background-color: #1C1C1C;
+  height: 100vh;
+} */
+
+#searchInput{
+  color: #E66A3B;
+  border: solid 1px #E66A3B;
+  background-color: #1C1C1C;
+  border-radius: 15px;
+  height: 5%;
+  width: 30vw;
+  padding-left: 15px;
+  margin-right: 10%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+#searchInput:focus{
+  outline: none;
+  border-bottom: none;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+::placeholder {
+  color: #E66A3B;
+  opacity: 0.7; /* Firefox */
 }
 
-.App-link {
-  color: #61dafb;
+#searchIcon{
+  width: 30px;
+  height: 30px;
+  margin-left: 25vw;
+  margin-right: 5px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#navBtn{
+  color:#E66A3B;
+  margin-right: 20px;
+}
+
+#logBtn{
+  color: #E66A3B;
+  border: 1px solid #E66A3B;
+  border-radius: 20px;
+  margin-right: 0px;
+  margin-left: auto;
 }
