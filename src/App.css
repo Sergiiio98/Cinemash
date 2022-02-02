@@ -104,6 +104,8 @@ html, body {
 .myRow{
   display: flex;
   overflow-x: scroll;
+  overflow-y: hidden;
+
 
 }
 
@@ -127,4 +129,22 @@ html, body {
   border-radius: 10px;
   border: 2px solid #E66A3B;
   
+}
+
+.btnY{
+  margin-right: 75px;
+  margin-top: 15px;
+  margin-left: 15px;
+}
+
+.btnP{
+  position: absolute;
+  top: 260px;
+  left: 150px;
+
+}
+
+.movieText{
+  margin-top: 130px;
+  margin-left: 10px;
 }

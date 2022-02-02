@@ -14,10 +14,7 @@ import MovieList from "./MovieList";
 import SearchForm from "./SearchForm";
 
 
-
-
-
-function CineHome(){
+function CineHome({addFavorite}){
     const starWars = [
         {
             "Title": "Star Wars: Episode IV - A New Hope",
@@ -283,15 +280,15 @@ function CineHome(){
             <div className="container-fluid movie-app">
             <h5 className="category">Star Wars Movies</h5>
                 <div className="myRow">
-                    <MovieList movies={starWars}/>
+                    <MovieList movies={starWars} addFavorite={addFavorite}/>
                 </div>
             <h5 className="category">Avengers</h5>
                 <div className="myRow">
-                <   MovieList movies={avengers}/>
+                <   MovieList movies={avengers} addFavorite={addFavorite}/>
                 </div>
             <h5 className="category">The Rambo series</h5>    
                 <div className="myRow">
-                    <MovieList movies={rambo}/>
+                    <MovieList movies={rambo} addFavorite={addFavorite}/>
                 </div>
             </div>
             
