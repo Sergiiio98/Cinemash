@@ -148,3 +148,14 @@ html, body {
   margin-top: 130px;
   margin-left: 10px;
 }
+
+.errorBox{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#error{
+  color:#fff;
+}

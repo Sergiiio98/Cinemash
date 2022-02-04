@@ -12,7 +12,16 @@ import { Button } from "@material-ui/core";
 
 import MovieList from "./MovieList";
 import SearchForm from "./SearchForm";
+import Register from "./Register";
 
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+    BrowserRouter,
+    Routes
+  } from "react-router-dom";
 
 function CineHome({addFavorite}){
     const starWars = [
@@ -253,50 +262,50 @@ function CineHome({addFavorite}){
     }
 
     return(
-        <div className="CineHome">
-             <Paper 
-            style={{
-                padding: 0,
-                margin: 0,
-                height: "100vh",
-                backgroundColor: "white",
-            }}
-            elevation={0}
-            >
-            <AppBar color='primary' position='static' style={{height: "64px", backgroundColor: "#1C1C1C"}}>
-        
-                <Toolbar>
-                    {/* <Typography style={{color: "#E66A3B"}}>Cinemash</Typography> */}
-                    <SearchIcon id="searchIcon" style={{color: "#E66A3B"}}/>
-                    {/* <TextField  id="searchInput" value={searchValue} placeholder="Search Cinemash" variant="standard" InputProps={{ disableUnderline: true }}/> */}
-                    <SearchForm addSearch={addSearch}/>
-                    <Button id="navBtn">Movies</Button>
-                    <Button id="navBtn">TV Series</Button>
-                    <Button id="navBtn">Categories</Button>
-                    <Button id="navBtn">Profile</Button> 
-                    <Button id="logBtn" variant="outlined">Log Out</Button>
-                </Toolbar>
-            </AppBar>
-            <div className="container-fluid movie-app">
-            <h5 className="category">Star Wars Movies</h5>
-                <div className="myRow">
-                    <MovieList movies={starWars} addFavorite={addFavorite}/>
-                </div>
-            <h5 className="category">Avengers</h5>
-                <div className="myRow">
-                <   MovieList movies={avengers} addFavorite={addFavorite}/>
-                </div>
-            <h5 className="category">The Rambo series</h5>    
-                <div className="myRow">
-                    <MovieList movies={rambo} addFavorite={addFavorite}/>
-                </div>
-            </div>
+            <div className="CineHome">
+                <Paper 
+                style={{
+                    padding: 0,
+                    margin: 0,
+                    height: "100vh",
+                    backgroundColor: "white",
+                }}
+                elevation={0}
+                >
+                <AppBar color='primary' position='static' style={{height: "64px", backgroundColor: "#1C1C1C"}}>
             
-        </Paper>
+                    <Toolbar>
+                        {/* <Typography style={{color: "#E66A3B"}}>Cinemash</Typography> */}
+                        <SearchIcon id="searchIcon" style={{color: "#E66A3B"}}/>
+                        {/* <TextField  id="searchInput" value={searchValue} placeholder="Search Cinemash" variant="standard" InputProps={{ disableUnderline: true }}/> */}
+                        <SearchForm addSearch={addSearch}/>
+                        <Link exact to="/register" ><Button id="navBtn">Register</Button></Link>
+                        <Button id="navBtn">TV Series</Button>
+                        <Button id="navBtn">Categories</Button>
+                        <Button id="navBtn">Profile</Button> 
+                        <Button id="logBtn" variant="outlined">Log Out</Button>
+                    </Toolbar>
+                </AppBar>
+                <div className="container-fluid movie-app">
+                <h5 className="category">Star Wars Movies</h5>
+                    <div className="myRow">
+                        <MovieList movies={starWars} addFavorite={addFavorite}/>
+                    </div>
+                <h5 className="category">Avengers</h5>
+                    <div className="myRow">
+                    <   MovieList movies={avengers} addFavorite={addFavorite}/>
+                    </div>
+                <h5 className="category">The Rambo series</h5>    
+                    <div className="myRow">
+                        <MovieList movies={rambo} addFavorite={addFavorite}/>
+                    </div>
+                </div>
+                
+            </Paper>
 
-        
-        
-        </div>
+       
+            
+            </div>
     );
 }
 

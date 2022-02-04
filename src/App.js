@@ -1,10 +1,25 @@
-import CineHome from "./CineHome";
-import "bootstrap/dist/css/bootstrap.min.css";
-import './App.css';
-import React from 'react';
+import React from 'react'
 import { useState, useEffect } from 'react';
 import {db} from './firebase-config';
 import {collection, getDocs, addDoc} from 'firebase/firestore';
+
+import "bootstrap/dist/css/bootstrap.min.css";
+import './App.css';
+
+import Register from "./Register";
+import CineHome from "./CineHome";
+import NotFound from "./NotFound";
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  BrowserRouter,
+  Routes
+} from "react-router-dom";
+
+
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -33,17 +48,23 @@ function App() {
     getUsers();
   }, []);
 
-  return (
-    <div className="App">
-      <CineHome addFavorite={addFavorite}/>
-      {users.map((user) => {
-        return (
-          <div>
-            {/* <h1>Name: {user.name}</h1> */}
-          </div>
-        );
-      })}
-    </div>
+    return (
+    <Router>
+    
+      <div className="App">
+        
+      
+
+        <Routes>
+          <Route exact path="/home" element={<CineHome/>}/>
+          <Route exact path="/register" element={<Register/>}/>
+          <Route path="*" element={<NotFound/>}/>
+        </Routes>
+      </div>
+
+
+
+    </Router>
   );
 
 }
