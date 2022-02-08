@@ -4,19 +4,23 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import {db} from './firebase-config';
 import {collection, getDocs, addDoc} from 'firebase/firestore';
+import {createUserWithEmailAndPassword} from "firebase/auth";
+import { auth } from "./firebase-config";
 
 function Register() {
 
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
-  const [loginEmail, setLoginrEmail] = useState("");
-  const [loginPassword, setLoginPassword] = useState("");
-  const register = () => {
+  // const [loginEmail, setLoginrEmail] = useState("");
+  // const [loginPassword, setLoginPassword] = useState("");
+  const register = async () => {
+    try{
+      const user = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
+      console.log(user);
 
-  }
-
-  const login = () => {
-
+    } catch (error){
+      console.log(error.message);
+    }
   }
 
   const logout = () => {
@@ -25,15 +29,17 @@ function Register() {
 
   
   return (
-    <div>
-        <h3>Register</h3>
-        <input placeholder="Email..." onChange={(event) => {
+    <div className="registerBox">
+        <h3 id="register">Cinemash</h3>
+        <h5 id="register">Create an account...</h5>
+
+        <input type="email" className="Input" placeholder="Email..." onChange={(event) => {
           setRegisterEmail(event.target.value);
         }}/>
-        <input placeholder="Password..." onChange={(event) => {
+        <input type="password" className="Input" placeholder="Password..." onChange={(event) => {
           setRegisterPassword(event.target.value);
         }}/>
-        <button> Sign Up</button>
+        <button className="cineBtn" onClick={register}> Sign Up</button>
     </div>
   );
 

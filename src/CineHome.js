@@ -9,11 +9,16 @@ import Grid from "@material-ui/core/Grid";
 import SearchIcon from '@mui/icons-material/Search';
 import TextField from "@material-ui/core/TextField";
 import { Button } from "@material-ui/core";
-
+import { useNavigate } from 'react-router-dom';
 import MovieList from "./MovieList";
 import SearchForm from "./SearchForm";
 import Register from "./Register";
-
+import {
+    onAuthStateChanged,
+    signOut,
+    getAuth
+} from "firebase/auth";
+import { auth, app,} from "./firebase-config";
 import {
     BrowserRouter as Router,
     Switch,
@@ -252,6 +257,7 @@ function CineHome({addFavorite}){
 
         setMovies(responseJson.Search);
     }
+    const navigate = useNavigate();
 
     useEffect(() =>{
         getMovieRequest();
@@ -261,6 +267,18 @@ function CineHome({addFavorite}){
         setSearchValue(newSearchText);
     }
 
+    const logout = async () => {
+        await signOut(auth);
+        console.log("logged out");
+      }
+
+
+      const authorization = getAuth();
+        onAuthStateChanged(authorization, (user) => {
+        if (!user) {
+            navigate('/login');
+        }
+        });
     return(
             <div className="CineHome">
                 <Paper 
@@ -279,11 +297,11 @@ function CineHome({addFavorite}){
                         <SearchIcon id="searchIcon" style={{color: "#E66A3B"}}/>
                         {/* <TextField  id="searchInput" value={searchValue} placeholder="Search Cinemash" variant="standard" InputProps={{ disableUnderline: true }}/> */}
                         <SearchForm addSearch={addSearch}/>
-                        <Link exact to="/register" ><Button id="navBtn">Register</Button></Link>
-                        <Button id="navBtn">TV Series</Button>
-                        <Button id="navBtn">Categories</Button>
+                        <Button id="navBtn">My Movies</Button>
+                        <Button id="navBtn">Database</Button>
                         <Button id="navBtn">Profile</Button> 
-                        <Button id="logBtn" variant="outlined">Log Out</Button>
+                        <Link exact to="/register" ><Button id="navBtn">Register</Button></Link>
+                        <Button onClick={logout} id="logBtn" variant="outlined">Log Out</Button>
                     </Toolbar>
                 </AppBar>
                 <div className="container-fluid movie-app">

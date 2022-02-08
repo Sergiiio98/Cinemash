@@ -7,6 +7,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
 
 import Register from "./Register";
+import Login from "./Login";
+
 import CineHome from "./CineHome";
 import NotFound from "./NotFound";
 
@@ -58,6 +60,7 @@ function App() {
         <Routes>
           <Route exact path="/home" element={<CineHome/>}/>
           <Route exact path="/register" element={<Register/>}/>
+          <Route exact path="/login" element={<Login/>}/>
           <Route path="*" element={<NotFound/>}/>
         </Routes>
       </div>
