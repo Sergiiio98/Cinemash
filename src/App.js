@@ -2,15 +2,17 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import {db} from './firebase-config';
 import {collection, getDocs, addDoc} from 'firebase/firestore';
+import { getAuth } from "firebase/auth";
+
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
 
 import Register from "./Register";
 import Login from "./Login";
-
 import CineHome from "./CineHome";
 import NotFound from "./NotFound";
+import MyMovies from "./MyMovies";
 
 import {
   BrowserRouter as Router,
@@ -31,9 +33,12 @@ function App() {
 
 
   const addFavorite = async (id) => {
+    const auth = getAuth();
+    const user = auth.currentUser;
     // await setFavorites([...favorites, id]);
-    await addDoc(favCollectionRef, {id: id});
-    // console.log(id);
+    await addDoc(favCollectionRef, {id: id, userId: user.uid});
+    console.log(id);
+    
     // console.log(favorites);
   }
 
@@ -43,7 +48,7 @@ function App() {
       const data = await getDocs(usersCollectionRef);
       setUsers(data.docs.map((doc) => ({...doc.data(), id: doc.id})))
       // console.log(data);
-      console.log(users);
+      // console.log(users);
 
 
   };
@@ -58,7 +63,8 @@ function App() {
       
 
         <Routes>
-          <Route exact path="/home" element={<CineHome/>}/>
+          <Route exact path="/home" element={<CineHome addFavorite={addFavorite}/>}/>
+          <Route exact path="/favorites" element={<MyMovies/>}/>
           <Route exact path="/register" element={<Register/>}/>
           <Route exact path="/login" element={<Login/>}/>
           <Route path="*" element={<NotFound/>}/>

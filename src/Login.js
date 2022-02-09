@@ -53,7 +53,7 @@ const logout = async () => {
 
   return (
     <div className="registerBox">
-        <h3 id="register">Cinemash</h3>
+        <h3 id="register1">Cinemash</h3>
         <h5 id="register">Log in...</h5>
 
         <input type="email" className="Input" placeholder="Email..." onChange={(event) => {
@@ -63,7 +63,7 @@ const logout = async () => {
           setLoginPassword(event.target.value);
         }}/>
         <button className="cineBtn" onClick={login}> Log in</button>
-        <button className="cineBtn" onClick={logout}> Log out</button>
+        {/* <button className="cineBtn" onClick={logout}> Log out</button> */}
 
 
         {/* <h1>logged in as: {user.email}</h1> */}

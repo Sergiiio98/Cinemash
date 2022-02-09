@@ -167,12 +167,19 @@ html, body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 20%;
 }
 
 #register{
   color:white;
+  margin-top: 150px;
 }
+
+#register1{
+  color:white;
+  margin-top: 150px;
+}
+
+
 
 .Input{
   color: #E66A3B;
