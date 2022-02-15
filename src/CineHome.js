@@ -249,7 +249,7 @@ function CineHome({addFavorite}){
     ];
 
     const [movies, setMovies] = useState([]);
-    const [searchValue, setSearchValue] = useState("star wars");
+    const [searchValue, setSearchValue] = useState("movie");
     const getMovieRequest = async () =>{
         const url = `http://www.omdbapi.com/?s=${searchValue}&apikey=4297c969`;
         const response = await fetch(url);
@@ -297,14 +297,19 @@ function CineHome({addFavorite}){
                         <SearchIcon id="searchIcon" style={{color: "#E66A3B"}}/>
                         {/* <TextField  id="searchInput" value={searchValue} placeholder="Search Cinemash" variant="standard" InputProps={{ disableUnderline: true }}/> */}
                         <SearchForm addSearch={addSearch}/>
-                        <Button id="navBtn">My Movies</Button>
-                        <Button id="navBtn">Database</Button>
-                        <Button id="navBtn">Profile</Button> 
-                        <Link exact to="/register" ><Button id="navBtn">Register</Button></Link>
+                        <Link exact to="/home"><Button id="navBtn">Home</Button></Link>
+                        <Link exact to="/favorites"><Button id="navBtn">Favorites</Button></Link>
+                        {/* <Link exact to="/register" ><Button id="navBtn">Register</Button></Link> */}
                         <Button onClick={logout} id="logBtn" variant="outlined">Log Out</Button>
+                        <Button id="logMobile" onClick={logout}>LogOut</Button> 
+
                     </Toolbar>
                 </AppBar>
                 <div className="container-fluid movie-app">
+                <h5 className="category">Your search results:</h5>
+                    <div className="myRow">
+                        <MovieList movies={movies} addFavorite={addFavorite}/>
+                    </div>
                 <h5 className="category">Star Wars Movies</h5>
                     <div className="myRow">
                         <MovieList movies={starWars} addFavorite={addFavorite}/>

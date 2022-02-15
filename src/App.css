@@ -2,6 +2,7 @@ html body {
   background-color: #1C1C1C;
 }
 
+
 html, body {
   max-width: 100%;
   overflow-x: hidden;
@@ -9,6 +10,7 @@ html, body {
 
 .movie-app{
   background-color: #1C1C1C;
+  height: 100vh;
 }
 
 
@@ -50,7 +52,7 @@ html, body {
 .imgsDescription {
   position: absolute;
   top: 0;
-  bottom: -18px;
+  bottom: 0px;
   left: 0;
   right: 0;
   background: rgba(0, 0, 0, 0.8);
@@ -92,7 +94,9 @@ html, body {
   color:#E66A3B;
   margin-right: 10px;
   margin-left : 10px;
+  text-decoration: none;
 }
+
 
 #logBtn{
   color: #E66A3B;
@@ -131,6 +135,10 @@ html, body {
   border-radius: 10px;
   border: 2px solid #E66A3B;
   
+}
+
+#logMobile{
+  display: none;
 }
 
 .btnY{
@@ -199,4 +207,63 @@ html, body {
   border: none;
   width: 25%;
 
+}
+
+
+@media only screen and (max-width: 600px) {
+  #searchIcon{
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+    display: none;
+  }
+
+  .imgs{
+    height: 200px;
+    width: auto;
+    max-width: 200px;
+    
+  }
+  
+  .btnY{
+    transform: scale(0.7);
+  }
+
+  .movieText{
+    transform: scale(0.7);
+    margin-bottom: 50px;
+  }
+ 
+  #searchInput{
+    color: #E66A3B;
+    border: solid 1px #E66A3B;
+    background-color: #1C1C1C;
+    border-radius: 15px;
+    height: 5%;
+    width: 30vw;
+    padding-left: 7px;
+    font-size: 12px;
+  }
+
+  .MuiButton-label{
+    font-size: 12px;
+  }
+
+  #logBtn{
+    color: #E66A3B;
+    border: 1px solid #E66A3B;
+    border-radius: 20px;
+    margin-right: 0px;
+    margin-left: auto;
+    display:none;
+  }
+
+  #logMobile{
+    display: block;
+    color: #E66A3B;
+    border: 1px solid #E66A3B;
+    border-radius: 20px;
+    margin-right: 0px;
+    margin-left: auto;
+  }
 }

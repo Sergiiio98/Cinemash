@@ -37,50 +37,54 @@ function MyMovies() {
     const [moviesData, setMoviesData] = useState([]);
 
    
-    useEffect(() => {
-            const getMovies = async () => {
-                const data = await getDocs(favCollectionRef);
-                setMyFavorites(data.docs.map((doc) => ({...doc.data(), id: doc.id})))
-                // console.log(data);
-                // console.log(myFavorites);
-
-                const tempIds = myFavorites.map((obj) =>{
-                    return obj.id;
-                })
-                // console.log(tempIds);
-
-                const someFunction = () => {
-                    const render = tempIds.map(async (obj) => {
-                        const url = `http://www.omdbapi.com/?s=${obj}&apikey=4297c969`;
-                        const response = await fetch(url);
-                        const responseJson = await response.json();
-                        return responseJson.Search;
-                    })
-                    const data = Promise.all(render);
-                    setMoviesData(data);
-                    console.log("movies data");
-                    console.log(moviesData);
-                }
-
-            
-
-               
-
-
-            //    console.log(moviesData);
-
-            };
+    useEffect( () => {
         getMovies();
-    }, []);
+    }, [moviesData]);
    
+    const getMovies = async () => {
+        const data = await getDocs(favCollectionRef);
+        setMyFavorites(data.docs.map((doc) => ({...doc.data()})))
+        // console.log(data);
+        // console.log(myFavorites);
+        console.log("test");
+
+        const tempIds = myFavorites.map((obj) =>{
+            return obj.id;
+        })
+        setIdList(tempIds);
+
+        const movies = await Promise.all(
+            tempIds.map(async (obj) => {
+            const url = `http://www.omdbapi.com/?i=${obj}&apikey=4297c969`;
+            // console.log(obj);
+            const response = await fetch(url);
+            const responseJson = await response.json();
+            return responseJson;
+        }));
+        await setMoviesData(movies);
+        console.log(movies);
+    };
     
     const logout = async () => {
         await signOut(auth);
         console.log("logged out");
       }
 
-
-
+    
+    
+    
+    //   const renderFavorites = async (idList) => {
+        
+    //     const render = await idList.map(async (obj) => {
+    //         const url = `http://www.omdbapi.com/?i=${obj}&apikey=4297c969`;
+    //         // console.log(obj);
+    //         const response = await fetch(url);
+    //         const responseJson = await response.json();
+    //         return <MovieList movies={responseJson}/>
+    //         // return responseJson.Search;
+    //     })
+    //     setMoviesData(render);
+    //   }
 
 
   return (
@@ -101,10 +105,8 @@ function MyMovies() {
                         <SearchIcon id="searchIcon" style={{color: "#E66A3B"}}/>
                         {/* <TextField  id="searchInput" value={searchValue} placeholder="Search Cinemash" variant="standard" InputProps={{ disableUnderline: true }}/> */}
                         <SearchForm/>
-                        <Button id="navBtn">My Movies</Button>
-                        <Button id="navBtn">Database</Button>
-                        <Button id="navBtn">Profile</Button> 
-                        <Link exact to="/register" ><Button id="navBtn">Register</Button></Link>
+                        <Link exact to="/home"><Button id="navBtn">Home</Button></Link>
+                        <Link exact to="/favorites"><Button id="navBtn">Favorites</Button></Link>
                         <Button onClick={logout} id="logBtn" variant="outlined">Log Out</Button>
                     </Toolbar>
                 </AppBar>
