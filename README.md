@@ -7,7 +7,7 @@
 
 ## Cinemash
 
-![readmeIMG](https://user-images.githubusercontent.com/46200125/154246530-37236b2a-ea3a-41dc-861e-01fc28c1a065.png)
+![1](https://user-images.githubusercontent.com/46200125/154246979-1bb39d56-fa17-476a-805a-4d62c760524a.png)
 
 ## General info
 Cinemash is web application for browsing and managing favorite movies.
