@@ -9,7 +9,7 @@ import Grid from "@material-ui/core/Grid";
 import SearchIcon from '@mui/icons-material/Search';
 import TextField from "@material-ui/core/TextField";
 import { Button } from "@material-ui/core";
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import MovieList from "./MovieList";
 import SearchForm from "./SearchForm";
 import Register from "./Register";
@@ -35,7 +35,7 @@ function MyMovies() {
     const [myFavorites, setMyFavorites] = useState([]);
     const [idList, setIdList] = useState([]);
     const [moviesData, setMoviesData] = useState([]);
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
    
     useEffect( () => {
@@ -81,12 +81,12 @@ function MyMovies() {
       }
 
 
-    //   const authorization = getAuth();
-    //     onAuthStateChanged(authorization, (user) => {
-    //     if (!user) {
-    //         navigate('/login');
-    //     }
-    //     });
+      const authorization = getAuth();
+        onAuthStateChanged(authorization, (user) => {
+        if (!user) {
+            navigate('/login');
+        }
+        });
 
   return (
     <div className="CineHome">
