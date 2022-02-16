@@ -9,7 +9,7 @@
 
 
 ## General info
-Cinemash is web application for browsing and managing favroties movies.
+Cinemash is web application for browsing and managing favorite movies.
 
 ## Technologies
 Project is created with:
