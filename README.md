@@ -17,6 +17,8 @@ Cinemash is web application for browsing and managing favorite movies.
 
 ## Technologies
 Project is created with:
+* HTML
+* CSS
 * React.js
 * Firebase (Firestore DB)
 
