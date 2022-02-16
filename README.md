@@ -7,6 +7,7 @@
 
 ## Cinemash
 
+![alt text](/readmeIMG.png)
 
 ## General info
 Cinemash is web application for browsing and managing favorite movies.
