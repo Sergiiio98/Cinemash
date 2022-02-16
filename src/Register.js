@@ -6,6 +6,8 @@ import {db} from './firebase-config';
 import {collection, getDocs, addDoc} from 'firebase/firestore';
 import {createUserWithEmailAndPassword} from "firebase/auth";
 import { auth } from "./firebase-config";
+import companyLogo from './imgs/logo.png';
+
 
 function Register() {
 
@@ -23,14 +25,10 @@ function Register() {
     }
   }
 
-  const logout = () => {
-
-  }
-
-  
   return (
     <div className="registerBox">
-        <h3 id="register">Cinemash</h3>
+        <img id="logo" src={companyLogo}></img>
+        <h3 id="register1">Cinemash</h3>
         <h5 id="register">Create an account...</h5>
 
         <input type="email" className="Input" placeholder="Email..." onChange={(event) => {

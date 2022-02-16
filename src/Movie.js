@@ -1,6 +1,6 @@
 import React from "react";
 
-function Movie({movie, addFavorite, id}){
+function Movie({movie, addFavorite, deleteFavorite, id}){
     return(
         <>
                 <div className="d-flex  m-3 imgs-wrap">
@@ -13,6 +13,8 @@ function Movie({movie, addFavorite, id}){
                             <p>{movie.Year}</p>
                         </div>
                         <button type="button" onClick={() => addFavorite(id)} className="btn btn-success btnP"> + </button>
+                        {/* <button type="button" onClick={() => deleteFavorite(id)} className="btn btn-danger btnD"> x </button> */}
+
                     </div>
                     
 

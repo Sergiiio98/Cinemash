@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {db} from './firebase-config';
 import {collection, getDocs, addDoc} from 'firebase/firestore';
+import companyLogo from './imgs/logo.png';
 import {
     signInWithEmailAndPassword,
     onAuthStateChanged,
@@ -12,7 +13,6 @@ import {
     getAuth
 } from "firebase/auth";
 import { auth, app,} from "./firebase-config";
-
 
 function Login() {
 
@@ -37,11 +37,16 @@ function Login() {
     }
   }
 
-const logout = async () => {
-    await signOut(auth);
-    console.log("logged out");
+
+  const signUp = async () => {
+    try{
+      navigate('/register');  
+      console.log("done");
+    } catch (error){
+      console.log(error.message);
+    }
   }
-  
+
     const authorization = getAuth();
       onAuthStateChanged(authorization, (user) => {
         if (user) {
@@ -50,12 +55,11 @@ const logout = async () => {
       });
 
 
-
   return (
     <div className="registerBox">
+        <img id="logo" src={companyLogo}></img>
         <h3 id="register1">Cinemash</h3>
         <h5 id="register">Log in...</h5>
-
         <input type="email" className="Input" placeholder="Email..." onChange={(event) => {
           setLoginEmail(event.target.value);
         }}/>
@@ -63,10 +67,7 @@ const logout = async () => {
           setLoginPassword(event.target.value);
         }}/>
         <button className="cineBtn" onClick={login}> Log in</button>
-        {/* <button className="cineBtn" onClick={logout}> Log out</button> */}
-
-
-        {/* <h1>logged in as: {user.email}</h1> */}
+        <button className="cineBtn" onClick={signUp}> Sign Up</button>
     </div>
   );
 

@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import {db} from './firebase-config';
 import {collection, getDocs, addDoc} from 'firebase/firestore';
 import { getAuth } from "firebase/auth";
-
+import { doc, updateDoc, deleteField } from "firebase/firestore";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
@@ -42,15 +42,22 @@ function App() {
     // console.log(favorites);
   }
 
+  const deleteFavorite = async (id) => {
+    const auth = getAuth();
+    const user = auth.currentUser;
+    await updateDoc(favCollectionRef, {
+      userId: deleteField()
+    });
+  
+    console.log(id);
+    
+  }
+
 
   useEffect(() => {
     const getUsers = async () => {
       const data = await getDocs(usersCollectionRef);
       setUsers(data.docs.map((doc) => ({...doc.data(), id: doc.id})))
-      // console.log(data);
-      // console.log(users);
-
-
   };
     getUsers();
   }, []);
@@ -63,7 +70,7 @@ function App() {
       
 
         <Routes>
-          <Route exact path="/home" element={<CineHome addFavorite={addFavorite}/>}/>
+          <Route exact path="/home" element={<CineHome addFavorite={addFavorite} deleteFavorite={deleteFavorite}/>}/>
           <Route exact path="/favorites" element={<MyMovies/>}/>
           <Route exact path="/register" element={<Register/>}/>
           <Route exact path="/login" element={<Login/>}/>

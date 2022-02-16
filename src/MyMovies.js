@@ -9,7 +9,7 @@ import Grid from "@material-ui/core/Grid";
 import SearchIcon from '@mui/icons-material/Search';
 import TextField from "@material-ui/core/TextField";
 import { Button } from "@material-ui/core";
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import MovieList from "./MovieList";
 import SearchForm from "./SearchForm";
 import Register from "./Register";
@@ -18,7 +18,7 @@ import {
     signOut,
     getAuth
 } from "firebase/auth";
-import {collection, getDocs, addDoc} from 'firebase/firestore';
+import { collection, query, where, getDocs } from "firebase/firestore";
 import { auth, app, db} from "./firebase-config";
 import {
     BrowserRouter as Router,
@@ -35,34 +35,44 @@ function MyMovies() {
     const [myFavorites, setMyFavorites] = useState([]);
     const [idList, setIdList] = useState([]);
     const [moviesData, setMoviesData] = useState([]);
+    // const navigate = useNavigate();
 
    
     useEffect( () => {
         getMovies();
-    }, [moviesData]);
+    }, [myFavorites]);
    
     const getMovies = async () => {
         const data = await getDocs(favCollectionRef);
         setMyFavorites(data.docs.map((doc) => ({...doc.data()})))
-        // console.log(data);
-        // console.log(myFavorites);
-        console.log("test");
+        
+        const user = auth.currentUser;
 
         const tempIds = myFavorites.map((obj) =>{
-            return obj.id;
+            if(user.uid == obj.userId){
+                return obj.id;
+            }else{
+                return null;
+            }
         })
-        setIdList(tempIds);
+
+        function check(obj) {
+            if(obj != null){
+                return obj
+            }
+          }
+
+        const newArr = tempIds.filter(check);
+        setIdList(newArr);
 
         const movies = await Promise.all(
-            tempIds.map(async (obj) => {
+            newArr.map(async (obj) => {
             const url = `http://www.omdbapi.com/?i=${obj}&apikey=4297c969`;
-            // console.log(obj);
             const response = await fetch(url);
             const responseJson = await response.json();
             return responseJson;
         }));
-        await setMoviesData(movies);
-        console.log(movies);
+        setMoviesData(movies);
     };
     
     const logout = async () => {
@@ -70,22 +80,13 @@ function MyMovies() {
         console.log("logged out");
       }
 
-    
-    
-    
-    //   const renderFavorites = async (idList) => {
-        
-    //     const render = await idList.map(async (obj) => {
-    //         const url = `http://www.omdbapi.com/?i=${obj}&apikey=4297c969`;
-    //         // console.log(obj);
-    //         const response = await fetch(url);
-    //         const responseJson = await response.json();
-    //         return <MovieList movies={responseJson}/>
-    //         // return responseJson.Search;
-    //     })
-    //     setMoviesData(render);
-    //   }
 
+    //   const authorization = getAuth();
+    //     onAuthStateChanged(authorization, (user) => {
+    //     if (!user) {
+    //         navigate('/login');
+    //     }
+    //     });
 
   return (
     <div className="CineHome">
@@ -115,14 +116,9 @@ function MyMovies() {
                     <div className="myRow">
                         <MovieList movies={moviesData}/>
                     </div>
-                
                 </div>
-                
             </Paper>
-
-       
-            
-            </div>
+        </div>
   );
 
 }

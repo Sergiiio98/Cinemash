@@ -28,7 +28,7 @@ import {
     Routes
   } from "react-router-dom";
 
-function CineHome({addFavorite}){
+function CineHome({addFavorite,deleteFavorite}){
     const starWars = [
         {
             "Title": "Star Wars: Episode IV - A New Hope",
@@ -293,13 +293,10 @@ function CineHome({addFavorite}){
                 <AppBar color='primary' position='static' style={{height: "64px", backgroundColor: "#1C1C1C"}}>
             
                     <Toolbar>
-                        {/* <Typography style={{color: "#E66A3B"}}>Cinemash</Typography> */}
                         <SearchIcon id="searchIcon" style={{color: "#E66A3B"}}/>
-                        {/* <TextField  id="searchInput" value={searchValue} placeholder="Search Cinemash" variant="standard" InputProps={{ disableUnderline: true }}/> */}
                         <SearchForm addSearch={addSearch}/>
                         <Link exact to="/home"><Button id="navBtn">Home</Button></Link>
                         <Link exact to="/favorites"><Button id="navBtn">Favorites</Button></Link>
-                        {/* <Link exact to="/register" ><Button id="navBtn">Register</Button></Link> */}
                         <Button onClick={logout} id="logBtn" variant="outlined">Log Out</Button>
                         <Button id="logMobile" onClick={logout}>LogOut</Button> 
 
@@ -308,19 +305,19 @@ function CineHome({addFavorite}){
                 <div className="container-fluid movie-app">
                 <h5 className="category">Your search results:</h5>
                     <div className="myRow">
-                        <MovieList movies={movies} addFavorite={addFavorite}/>
+                        <MovieList movies={movies} addFavorite={addFavorite} deleteFavorite={deleteFavorite}/>
                     </div>
                 <h5 className="category">Star Wars Movies</h5>
                     <div className="myRow">
-                        <MovieList movies={starWars} addFavorite={addFavorite}/>
+                        <MovieList movies={starWars} addFavorite={addFavorite} deleteFavorite={deleteFavorite}/>
                     </div>
                 <h5 className="category">Avengers</h5>
                     <div className="myRow">
-                    <   MovieList movies={avengers} addFavorite={addFavorite}/>
+                    <   MovieList movies={avengers} addFavorite={addFavorite} deleteFavorite={deleteFavorite}/>
                     </div>
                 <h5 className="category">The Rambo series</h5>    
                     <div className="myRow">
-                        <MovieList movies={rambo} addFavorite={addFavorite}/>
+                        <MovieList movies={rambo} addFavorite={addFavorite} deleteFavorite={deleteFavorite}/>
                     </div>
                 </div>
                 
