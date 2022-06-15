@@ -10,15 +10,15 @@ import SearchIcon from '@mui/icons-material/Search';
 import TextField from "@material-ui/core/TextField";
 import { Button } from "@material-ui/core";
 import { useNavigate } from 'react-router-dom';
-import MovieList from "./MovieList";
-import SearchForm from "./SearchForm";
-import Register from "./Register";
+import MovieList from "../MovieList/MovieList";
+import SearchForm from "../SearchForm/SearchForm";
+import Register from "../Register/Register";
 import {
     onAuthStateChanged,
     signOut,
     getAuth
 } from "firebase/auth";
-import { auth, app,} from "./firebase-config";
+import { auth, app,} from "../../Firebase/firebase-config";
 import {
     BrowserRouter as Router,
     Switch,

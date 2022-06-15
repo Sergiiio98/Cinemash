@@ -1,12 +1,12 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import './App.css';
+import '../../App.css';
 import React from 'react';
 import { useState, useEffect } from 'react';
-import {db} from './firebase-config';
+import {db} from '../../Firebase/firebase-config';
 import {collection, getDocs, addDoc} from 'firebase/firestore';
 import {createUserWithEmailAndPassword} from "firebase/auth";
-import { auth } from "./firebase-config";
-import companyLogo from './imgs/logo.png';
+import { auth } from "../../Firebase/firebase-config";
+import companyLogo from '../../imgs/logo.png';
 
 
 function Register() {

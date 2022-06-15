@@ -1,6 +1,6 @@
 import React from "react";
 import TextField from "@material-ui/core/TextField";
-import useInputState from "./hooks/useInputState";
+import useInputState from "../../hooks/useInputState";
 
 function SearchForm({addSearch}){
     const [value, handleChange, reset] = useInputState("");

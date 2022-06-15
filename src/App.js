@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-import {db} from './firebase-config';
+import {db} from './Firebase/firebase-config';
 import {collection, getDocs, addDoc} from 'firebase/firestore';
 import { getAuth } from "firebase/auth";
 import { doc, updateDoc, deleteField } from "firebase/firestore";
@@ -8,11 +8,11 @@ import { doc, updateDoc, deleteField } from "firebase/firestore";
 import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
 
-import Register from "./Register";
-import Login from "./Login";
-import CineHome from "./CineHome";
-import NotFound from "./NotFound";
-import MyMovies from "./MyMovies";
+import Register from "./components/Register/Register";
+import Login from "./components/Login/Login";
+import CineHome from "./components/CineHome/CineHome";
+import NotFound from "./components/NotFound/NotFound";
+import MyMovies from "./components/MyMovies/MyMovies";
 
 import {
   BrowserRouter as Router,

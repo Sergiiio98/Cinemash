@@ -1,18 +1,18 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import './App.css';
+import '../../App.css';
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {db} from './firebase-config';
+import {db} from '../../Firebase/firebase-config';
 import {collection, getDocs, addDoc} from 'firebase/firestore';
-import companyLogo from './imgs/logo.png';
+import companyLogo from '../../imgs/logo.png';
 import {
     signInWithEmailAndPassword,
     onAuthStateChanged,
     signOut,
     getAuth
 } from "firebase/auth";
-import { auth, app,} from "./firebase-config";
+import { auth, app,} from "../../Firebase/firebase-config";
 
 function Login() {
 
