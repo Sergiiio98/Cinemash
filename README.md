@@ -32,7 +32,5 @@ $ npm install
 $ npm start
 ```
 
-## Project Status
 
-In progress 
 
